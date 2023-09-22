@@ -7,7 +7,7 @@ import (
 
 const messagesBasePath = "v2/messages"
 
-type WhatsAppMessagesService interface {
+type WhatsAppService interface {
 	GetMessage() error
 	SendTemplateMessage(context.Context, *SendMessageRequest) (*SendMessageStatus, *Response, error)
 	GetMessageHistory() error
@@ -45,19 +45,20 @@ type SendMessageRequest struct {
 
 type SendMessageStatus struct {
 	MessageId  string `json:"messageId"`
+	CustomerId string `json:"customerId"`
 	Status     string `json:"status"`
 	StatusText string `json:"statusText"`
 }
 
-type WhatsAppMessagesServiceImpl struct {
+type WhatsAppServiceImpl struct {
 	client *Client
 }
 
-func (s *WhatsAppMessagesServiceImpl) GetMessage() error {
+func (s *WhatsAppServiceImpl) GetMessage() error {
 	return nil
 }
 
-func (s *WhatsAppMessagesServiceImpl) SendTemplateMessage(ctx context.Context, sendMessageRequest *SendMessageRequest) (*SendMessageStatus, *Response, error) {
+func (s *WhatsAppServiceImpl) SendTemplateMessage(ctx context.Context, sendMessageRequest *SendMessageRequest) (*SendMessageStatus, *Response, error) {
 	if sendMessageRequest == nil {
 		return nil, nil, NewArgError("sendMessageRequest", "cannot be nil")
 	}
@@ -76,10 +77,10 @@ func (s *WhatsAppMessagesServiceImpl) SendTemplateMessage(ctx context.Context, s
 	return status, resp, nil
 }
 
-func (s *WhatsAppMessagesServiceImpl) GetMessageHistory() error {
+func (s *WhatsAppServiceImpl) GetMessageHistory() error {
 	return nil
 }
 
-func (s *WhatsAppMessagesServiceImpl) DeleteMessage() error {
+func (s *WhatsAppServiceImpl) DeleteMessage() error {
 	return nil
 }

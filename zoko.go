@@ -11,7 +11,7 @@ import (
 )
 
 const (
-	libraryVersion = "1.0.0"
+	libraryVersion = "2.0.0"
 	defaultBaseURL = "https://chat.zoko.io/"
 	userAgent      = "gozoko/" + libraryVersion
 	mediaType      = "application/json"
@@ -26,7 +26,7 @@ type Client struct {
 	headers    map[string]string
 
 	// services
-	WhatsAppMessages WhatsAppMessagesService
+	WhatsApp WhatsAppService
 }
 
 type ClientOpt func(*Client) error
@@ -61,7 +61,7 @@ func NewClient(httpClient *http.Client) *Client {
 	c := &Client{HTTPClient: httpClient, BaseURL: baseURL, UserAgent: userAgent}
 
 	// services
-	c.WhatsAppMessages = &WhatsAppMessagesServiceImpl{client: c}
+	c.WhatsApp = &WhatsAppServiceImpl{client: c}
 
 	c.headers = make(map[string]string)
 	return c
