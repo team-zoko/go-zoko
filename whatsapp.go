@@ -9,7 +9,7 @@ const messagesBasePath = "v2/messages"
 
 type WhatsAppService interface {
 	GetMessage() error
-	SendTemplateMessage(context.Context, *SendMessageRequest) (*SendMessageStatus, *Response, error)
+	SendMessage(context.Context, *SendMessageRequest) (*SendMessageStatus, *Response, error)
 	GetMessageHistory() error
 	DeleteMessage() error
 }
@@ -58,7 +58,7 @@ func (s *WhatsAppServiceImpl) GetMessage() error {
 	return nil
 }
 
-func (s *WhatsAppServiceImpl) SendTemplateMessage(ctx context.Context, sendMessageRequest *SendMessageRequest) (*SendMessageStatus, *Response, error) {
+func (s *WhatsAppServiceImpl) SendMessage(ctx context.Context, sendMessageRequest *SendMessageRequest) (*SendMessageStatus, *Response, error) {
 	if sendMessageRequest == nil {
 		return nil, nil, NewArgError("sendMessageRequest", "cannot be nil")
 	}
