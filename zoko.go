@@ -11,7 +11,7 @@ import (
 )
 
 const (
-	libraryVersion = "2.0.0" // major version is the version of api. 2 because this uses v2 api
+	libraryVersion = "1.0.0"
 	defaultBaseURL = "https://chat.zoko.io/"
 	userAgent      = "gozoko/" + libraryVersion
 	mediaType      = "application/json"
