@@ -5,7 +5,7 @@ import (
 	"net/http"
 )
 
-const messagesBasePath = "v2/messages"
+const messagesBasePath = "v2/message"
 
 type WhatsAppService interface {
 	GetMessage() error
